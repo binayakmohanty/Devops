@@ -22,16 +22,15 @@ jobs:
          TAG_NAME: nightly-tag-${{ steps.date.outputs.date }}
          RELEASE_NAME: nightly-release-${{ steps.date.outputs.date }}
          
-     - name: Fetchyear
+     - name: Fetch year
        id: get-year
        uses: actions/github-script@0.9.0
        with:
          script: |
            const year = ${{ steps.date.outputs.date }}.value.split('-')[1]
-           echo "${{year}}"
            core.setOutput('year', year)
-     #- run: echo "${{ steps.get-year.outputs.year }}"    
-     - name: Print current year
-       id: yearValue
-       run: echo "${{ steps.get-year.outputs.year }}"  
+     - run: echo "${{steps.get-year.outputs.year}}"    
+     - name: Print current date
+       id: dateValue
+       run: echo "${{steps.date.outputs.date}}"     
        
