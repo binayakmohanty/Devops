@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v2
-
-
      - name: Get current date
        id: date
        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
      - name: Print current date
        id: dateValue
-       run: echo "steps.date"       
+       run: echo "steps.date.outputs.date"       
