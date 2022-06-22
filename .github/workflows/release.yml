@@ -12,15 +12,15 @@ jobs:
      - uses: actions/checkout@v2
      - name: Get current year
        id: year
-       run: echo "::set-output name=year::$(year +'%Y')"
+       run: echo "::set-output name=year::$(date +'%Y')"
        
      - name: Get current month
        id: month
-       run: echo "::set-output name=month::$(month +'%m')"
+       run: echo "::set-output name=month::$(date +'%m')"
        
      - name: Get current date
        id: day
-       run: echo "::set-output name=day::$(day +'%d')"    
+       run: echo "::set-output name=day::$(date +'%d')"    
        
      - name: Print current year
        id: yearValue
