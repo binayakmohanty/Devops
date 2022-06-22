@@ -20,6 +20,6 @@ jobs:
         update_odoo_module_version: true
        env:
         GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-     - name: Get current dateid:
-       daterun:
-         echo "::set-output name=date::$(date +'%Y-%m-%d')" 
+     - name: Get current date
+       id: date
+       run: echo "::set-output name=date::$(date +'%Y-%m-%d')" 
