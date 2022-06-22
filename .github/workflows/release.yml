@@ -11,15 +11,7 @@ jobs:
     steps:
      - uses: actions/checkout@v2
 
-     - name: Create an incremental release
-       uses: aurestic/incrementarl-create-release@master
-       with:
-        flag_branch: true
-        message: Bump version
-        prev_tag: 'v*'
-        update_odoo_module_version: true
-       env:
-        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
      - name: Get current date
        id: date
        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
