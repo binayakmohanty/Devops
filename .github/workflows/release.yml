@@ -31,7 +31,7 @@ jobs:
            echo "${{year}}"
            core.setOutput('year', year)
      #- run: echo "${{ steps.get-year.outputs.year }}"    
-     - name: Print current date
-       id: dateValue
+     - name: Print current year
+       id: yearValue
        run: echo "${{ steps.get-year.outputs.year }}"  
        
