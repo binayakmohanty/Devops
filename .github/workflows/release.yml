@@ -29,8 +29,5 @@ jobs:
          script: |
            const year = ${{ steps.date.outputs.date }}.value.split('-')[1]
            core.setOutput('year', year)
-     - run: echo "${{steps.get-year.outputs.year}}"    
-     - name: Print current date
-       id: dateValue
-       run: echo "${{steps.date.outputs.date}}"     
+     - run: echo "${{steps.get-year.outputs.year}}"       
        
