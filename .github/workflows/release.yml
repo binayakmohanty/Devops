@@ -40,7 +40,9 @@ jobs:
          echo "::set-output name=minor::${{ steps.split.outputs._1 }}"  
          echo "::set-output name=patch::${{ steps.split.outputs._2 }}"
          echo "::set-output name=check::(${{steps.utils.outputs.month}} % 3)"
-         echo "::set-output name=quarter::(${{steps.utils.outputs.month}} % 3)"        
+         echo "::set-output name=quarter::(${{steps.utils.outputs.month}} % 3)"    
+         echo "${{steps.printv.outputs.check}}"          
+         echo "${{steps.printv.outputs.quarter}}"          
 
              
        
