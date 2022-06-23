@@ -34,11 +34,22 @@ jobs:
      - name: Fetch tag
        id: tag
        run: |
-             echo "::set-output name=tago::$(git fetch origin +refs/tags/*:refs/tags/*)"
              echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
      - name: Test tag
-       run: |
-             echo "${{steps.tag.outputs.tago}}"        
-             echo "${{steps.tag.outputs.tag}}"        
+       run: |       
+             echo "${{steps.tag.outputs.tag}}"    
+             
+     - name: Logic
+       id: logic
+       uses: actions/github-script@v1.1
+       env:
+         PR_NUMBER: ${{ github.event.pull_request.number }}
+         CURRENT_VERSION: ${{steps.tag.outputs.tag}}
+       with:          github-token: ${{ steps.get_workflow_token.outputs.token }}
+         script: |
+           versionSyntax = (CURRENT_VERSION =~ /^(?<major>202\d)\.(?<minor>\d)\.(?<patch>\d+)$/)
+           echo ${ versionSysntax }
+
+             
        
        
