@@ -34,10 +34,11 @@ jobs:
      - name: Fetch tag
        id: tag
        run: |
-             echo "::set-output name=tag::$(git fetch origin +refs/tags/*:refs/tags/*)"
-             $ tago=$(git describe --tags `git rev-list --tags --max-count=1`)
-             echo $tago
+             echo "::set-output name=tago::$(git fetch origin +refs/tags/*:refs/tags/*)"
+             echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
      - name: Test tag
-       run: echo "${{steps.tag.outputs.tag}}"        
+       run: |
+             echo "${{steps.tag.outputs.tago}}"        
+             echo "${{steps.tag.outputs.tag}}"        
        
        
