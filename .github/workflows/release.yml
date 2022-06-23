@@ -10,34 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v2
-     - name: Get current year
-       id: year
-       run: echo "::set-output name=year::$(date +'%Y')"
-       
-     - name: Get current month
-       id: month
-       run: echo "::set-output name=month::$(date +'%m')"
-       
-     - name: Get current date
-       id: day
-       run: echo "::set-output name=day::$(date +'%d')"    
-       
-     - name: Print current year
-       id: yearValue
-       run: echo "${{steps.year.outputs.year}}"
- 
-     - name: Print current month
-       id: monthValue
-       run: echo "${{steps.month.outputs.month}}" 
-       
-         
+       with:
+         fetch-depth: 0
      - name: Fetch tag
        id: tag
        run: |
+             echo "::set-output name=year::$(date +'%Y')"
+             echo "::set-output name=month::$(date +'%m')"
              echo "::set-output name=tago::$(git fetch origin +refs/tags/*:refs/tags/*)"
              echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
      - name: Test tag
        run: |       
+             echo "${{steps.year.outputs.year}}"
+             echo "${{steps.month.outputs.month}}" 
              echo "${{steps.tag.outputs.tag}}"    
              
      - name: Split version code
