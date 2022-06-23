@@ -46,7 +46,7 @@ jobs:
          PR_NUMBER: ${{ github.event.pull_request.number }}
          CURRENT_VERSION: ${{steps.tag.outputs.tag}}
        with:
-         github-token: ${{ steps.get_workflow_token.outputs.token }}
+         github-token: ${{ secrets.MY_GITHUB_TOKENS }}
          script: |
            versionSyntax = (CURRENT_VERSION =~ /^(?<major>202\d)\.(?<minor>\d)\.(?<patch>\d+)$/)
            echo ${ versionSysntax }
