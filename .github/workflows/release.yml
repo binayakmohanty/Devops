@@ -39,17 +39,33 @@ jobs:
        run: |       
              echo "${{steps.tag.outputs.tag}}"    
              
-     - name: Logic
-       id: logic
-       uses: actions/github-script@v1.1
-       env:
-         PR_NUMBER: ${{ github.event.pull_request.number }}
-         CURRENT_VERSION: ${{steps.tag.outputs.tag}}
+     - name: Fetch tag
+       id: tag
+       run: |
+             echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
+     - name: Test tag
+       run: |       
+             echo "${{steps.tag.outputs.tag}}"
+             
+             
+     - name: Split version code
+       uses: xom9ikk/split@v1
+       id: split
        with:
-         github-token: ${{ secrets.MY_GITHUB_TOKENS }}
-         script: |
-           versionSyntax = (CURRENT_VERSION =~ /^(?<major>202\d)\.(?<minor>\d)\.(?<patch>\d+)$/)
-           echo ${ versionSysntax }
+         string: ${{steps.tag.outputs.tag}}
+         separator: .
+         limit: -1
+
+     - name: Some other action
+       id: print
+       with:
+         major: ${{ steps.split.outputs._0 }}
+         minor: ${{ steps.split.outputs._1 }}
+         patch: ${{ steps.split.outputs._2 }}
+       run: |       
+             echo "${{steps.print.outputs.major}}"         
+             echo "${{steps.print.outputs.minor}}"         
+             echo "${{steps.print.outputs.patch}}"         
 
              
        
