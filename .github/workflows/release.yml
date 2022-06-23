@@ -61,7 +61,9 @@ jobs:
        with:
          major: ${{ steps.split.outputs._0 }}
          minor: ${{ steps.split.outputs._1 }}
-         patch: ${{ steps.split.outputs._2 }}         
+         patch: ${{ steps.split.outputs._2 }}
+       run: |       
+             echo "${{steps.split.outputs._0}}"                 
 
              
        
