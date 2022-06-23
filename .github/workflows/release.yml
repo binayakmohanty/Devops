@@ -35,7 +35,6 @@ jobs:
        id: tag
        run: echo "::set-output name=tag::$(git fetch origin +refs/tags/*:refs/tags/*)"
      - name: Test tag
-       run: |
-         echo "${{steps.tag.outputs.tag}}"        
+       run: echo "${{steps.tag.outputs.tag}}"        
        
        
