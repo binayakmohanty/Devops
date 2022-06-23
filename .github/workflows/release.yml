@@ -63,7 +63,7 @@ jobs:
          minor: ${{ steps.split.outputs._1 }}
          patch: ${{ steps.split.outputs._2 }}
        run: |       
-             echo "${{steps.split.outputs._0}}"                 
+             echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"                 
 
              
        
