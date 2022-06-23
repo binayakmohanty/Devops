@@ -39,20 +39,11 @@ jobs:
        run: |       
              echo "${{steps.tag.outputs.tag}}"    
              
-     - name: Fetch tag
-       id: tag
-       run: |
-             echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
-     - name: Test tag
-       run: |       
-             echo "${{steps.tag.outputs.tag}}"
-             
-             
      - name: Split version code
        uses: xom9ikk/split@v1
        id: split
        with:
-         string: v2022.2.1
+         string: ${{steps.tag.outputs.tag}}
          separator: .
          limit: -1
          
