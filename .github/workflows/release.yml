@@ -12,8 +12,8 @@ jobs:
      - uses: actions/checkout@v2
        with:
          fetch-depth: 0
-     - name: Fetch tag
-       id: tag
+     - name: Fetch utils
+       id: utils
        run: |
              echo "::set-output name=year::$(date +'%Y')"
              echo "::set-output name=month::$(date +'%m')"
@@ -21,9 +21,9 @@ jobs:
              echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
      - name: Test tag
        run: |       
-             echo "${{steps.tag.outputs.year}}"
-             echo "${{steps.tag.outputs.month}}" 
-             echo "${{steps.tag.outputs.tag}}"    
+             echo "${{steps.utils.outputs.year}}"
+             echo "${{steps.utils.outputs.month}}" 
+             echo "${{steps.utils.outputs.tag}}"    
              
      - name: Split version code
        uses: xom9ikk/split@v1
