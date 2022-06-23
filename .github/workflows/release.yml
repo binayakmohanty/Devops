@@ -21,8 +21,8 @@ jobs:
              echo "::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)"
      - name: Test tag
        run: |       
-             echo "${{steps.year.outputs.year}}"
-             echo "${{steps.month.outputs.month}}" 
+             echo "${{steps.tag.outputs.year}}"
+             echo "${{steps.tag.outputs.month}}" 
              echo "${{steps.tag.outputs.tag}}"    
              
      - name: Split version code
