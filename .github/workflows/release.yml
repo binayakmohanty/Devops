@@ -29,7 +29,7 @@ jobs:
        uses: xom9ikk/split@v1
        id: split
        with:
-         string: ${{steps.tag.outputs.tag}}
+         string: ${{steps.utils.outputs.tag}}
          separator: .
          limit: -1
          
