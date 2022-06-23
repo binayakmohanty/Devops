@@ -48,7 +48,6 @@ jobs:
          separator: .
          limit: -1
          
-
      - name: Some other action
        id: printv
        run: |
