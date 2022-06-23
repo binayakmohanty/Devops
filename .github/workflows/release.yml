@@ -49,10 +49,11 @@ jobs:
          
 
      - name: Some other action
-       with:
-         major: ${{ steps.split.outputs._0 }}
-         minor: ${{ steps.split.outputs._1 }}
-         patch: ${{ steps.split.outputs._2 }}                 
+       id: printv
+       run: |
+         echo "::set-output name=major::${{ steps.split.outputs._0 }}"  
+         echo "::set-output name=minor::${{ steps.split.outputs._1 }}"  
+         echo "::set-output name=patch::${{ steps.split.outputs._2 }}"             
 
              
        
